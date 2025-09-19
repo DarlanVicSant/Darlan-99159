@@ -1,29 +1,29 @@
-import streamlit as st
-import time
-
-st.title("Atividade 7")
-
-st.header("Numeros inteiros")
-
-st.write("Solicite a um usuario 5 número inteiro e some")
+import os
+os.system("cls")
 
 
-st.title("Calculadora de Soma de 5 Números")
+soma_das_notas = 0
+contador_de_notas = 0
 
-st.write("Insira 5 números inteiros para calcular a soma.")
+while True:
 
-
-num1 = st.number_input("Número 1", value=0, step=1)
-num2 = st.number_input("Número 2", value=0, step=1)
-num3 = st.number_input("Número 3", value=0, step=1)
-num4 = st.number_input("Número 4", value=0, step=1)
-num5 = st.number_input("Número 5", value=0, step=1)
+    resposta = input("Deseja inserir uma nota? (S/N): ").upper()
 
 
-soma = num1 + num2 + num3 + num4 + num5
+    if resposta == "N":
+        break
 
-if st.button("Iniciar soma"):
-    st.subheader("Resultado da Soma")
-    st.write(f"A soma dos números é: **{soma}**")
+
+    try:
+        nota = float(input("Digite a nota: "))
+        soma_das_notas += nota
+        contador_de_notas += 1
+    except ValueError:
+        print("Entrada inválida. Por favor, digite um número.")
+
+if contador_de_notas > 0:
+    media = soma_das_notas / contador_de_notas
+    print(f"\nNotas inseridas: {contador_de_notas}")
+    print(f"A média aritmética das notas é: {media:.2f}")
 else:
-    st.info("Informe os numeros")
+    print("\nNenhuma nota foi inserida.")
