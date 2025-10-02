@@ -1,19 +1,14 @@
 import os
 os.system("cls")
 
-soma = 0
-contador = 0
+vetor_de_notas = []
 
-while True:
-    nota = float(input("Digite uma nota: "))
-    contador += 1
-    soma += nota
+print("Solicitando 3 notas. ")
+for i in range(3):
+    nota = float(input("Digitei uma nota: "))
 
-    continuar = input("Deseja digitar mais uma nota? Digite S ou N: ").lower()
-    if continuar == "n":
-        print("Calculando media")
-        break 
+    vetor_de_notas.append(nota)
 
-media = soma / contador
-
-print(f"\nMedia: {media} ")
+print("\nMostrando todas as notas. ")
+for i in range(3):
+    print(f"Nota: {vetor_de_notas[i]} ")    
