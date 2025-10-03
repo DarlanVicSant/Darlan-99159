@@ -1,41 +1,37 @@
 import os
 os.system("cls")
 
-vetor = []
+def verificar_sinal(valor):
+
+    
+    if valor > 0:
+        print(f"O número {valor} é POSITIVO.")
+    elif valor < 0:
+        print(f"O número {valor} é NEGATIVO.")
+    else:
+
+        print(f"O número {valor} é ZERO.")
 
 
-print("--- Entrada de Dados ---")
 
-for i in range(5):
-    while True:
-        try:
-      
-            numero = float(input(f"Digite o {i+1}º número: "))
+print("--- Teste 1: Positivo ---")
+verificar_sinal(10)
+
+print("\n--- Teste 2: Negativo ---")
+verificar_sinal(-5)
+
+print("\n--- Teste 3: Zero ---")
+verificar_sinal(0)
+
+
+
+print("\n--- Teste com Input do Usuário ---")
+try:
+    
+    numero_digitado = int(input("Digite um número inteiro: "))
+    
  
-            vetor.append(numero)
- 
-            break
-        except ValueError:
-      
-            print("Entrada inválida. Por favor, digite um número.")
-
-
-quantidade_negativos = 0
-soma_positivos = 0
-
-print("\n--- Processamento ---")
-
-for numero in vetor:
-
-    if numero < 0:
-        quantidade_negativos += 1  
-   
-    elif numero > 0:
-        soma_positivos += numero  
-   
-
-
-print("\n--- Resultados ---")
-print(f"Vetor preenchido: {vetor}")
-print(f"Quantidade de números negativos: {quantidade_negativos}")
-print(f"Soma dos números positivos: {soma_positivos}")
+    verificar_sinal(numero_digitado)
+    
+except ValueError:
+    print("Entrada inválida. Por favor, digite apenas um número inteiro.")
