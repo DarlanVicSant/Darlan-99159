@@ -1,72 +1,145 @@
 import os
+import time
 from dataclasses import dataclass
-os.system("cls")
 
-from dataclasses import dataclass
-from typing import ClassVar
+os.system("cls || clear")  # limpa o terminal em Windows e Linux
+
+lista_clientes = []
 
 @dataclass
-class Pessoa:
-    """
-    Representa uma pessoa com Nome, E-mail e Endereço.
-    """
-
+class Cliente:
     nome: str
     email: str
-    endereco: str
+    telefone: str
+
+    def mostrar_dados(self):
+        print(f"Nome: {self.nome}\nE-mail: {self.email}\nTelefone: {self.telefone}")
 
 
+# Função para verificar se a lista está vazia
+def lista_vazia(lista_clientes):
+    if not lista_clientes:
+        print("\nNão há clientes cadastrados.")
+        return True
+    return False
 
-    def mostrar_dados(self) -> None:
-        """
-        Exibe todos os dados da pessoa: Nome, E-mail e Endereço.
-        """
+
+def adicionar_cliente(lista_clientes):
+    print("\n--- Adicionar novo cliente ---")
+    nome = input("Digite seu nome: ")
+    email = input("Digite seu E-mail: ")
+    telefone = input("Digite seu Telefone: ")
+
+    novo_cliente = Cliente(nome=nome, email=email, telefone=telefone)
+    lista_clientes.append(novo_cliente)
+    print(f"\nCliente {nome} adicionado com sucesso!")
+
+
+# Função para encontrar cliente
+def encontrar_cliente_por_nome(lista_clientes, nome_buscar):
+    nome_buscar_lower = nome_buscar.lower()
+    for cliente in lista_clientes:
+        if cliente.nome.lower() == nome_buscar_lower:
+            return cliente
+    return None
+
+
+# Mostrar todos os clientes
+def mostrar_todos_clientes(lista_clientes):
+    if lista_vazia(lista_clientes):
+        return
+    print("\n--- Lista de Clientes ---")
+    for cliente in lista_clientes:
+        cliente.mostrar_dados()
         print("-" * 30)
-        print(f"Nome:     {self.nome}")
-        print(f"E-mail:   {self.email}")
-        print(f"Endereço: {self.endereco}")
-        print("-" * 30)
-
-    def mostrar_somente_nome(self) -> None:
-        """
-        Exibe apenas o nome da pessoa.
-        """
-        print(f"Nome da Pessoa: {self.nome}")
 
 
+# Atualizar cliente
+def atualizar_clientes(lista_clientes):
+    if lista_vazia(lista_clientes):
+        return
 
-print("--- Criando as Pessoas ---")
+    mostrar_todos_clientes(lista_clientes)
+    print("\n--- Atualizar dados do cliente ---")
+    nome_buscar = input("Digite o nome do cliente: ")
 
-pessoa1 = Pessoa(
-    nome="João da Silva",
-    email="joao.silva@exemplo.com",
-    endereco="Rua das Flores, 101 - Centro"
-)
+    cliente = encontrar_cliente_por_nome(lista_clientes, nome_buscar)
 
-pessoa2 = Pessoa(
-    nome="Maria Oliveira",
-    email="maria.o@exemplo.com",
-    endereco="Avenida Principal, 55 - Bairro Novo"
-)
+    if cliente:
+        print("\nCliente encontrado.")
+        print("Deixe o campo vazio para manter o valor atual.\n")
 
-print("\nPessoa 1 criada com sucesso.")
-print("Pessoa 2 criada com sucesso.")
+        novo_nome = input(f"Nome atual ({cliente.nome}): ")
+        novo_email = input(f"E-mail atual ({cliente.email}): ")
+        novo_telefone = input(f"Telefone atual ({cliente.telefone}): ")
 
+        if novo_nome:
+            cliente.nome = novo_nome
+        if novo_email:
+            cliente.email = novo_email
+        if novo_telefone:
+            cliente.telefone = novo_telefone
 
-
-print("\n\n--- Chamando a função 'mostrar_dados()' para Pessoas ---")
-
-print("\nDados Completos da Pessoa 1:")
-pessoa1.mostrar_dados()
-
-print("\nDados Completos da Pessoa 2:")
-pessoa2.mostrar_dados()
+        print(f"\nDados do cliente '{cliente.nome}' atualizados com sucesso!")
+    else:
+        print(f"\nCliente com nome '{nome_buscar}' não encontrado.")
 
 
-print("\n\n--- Chamando a função 'mostrar_somente_nome()' para Pessoas ---")
+# Excluir cliente
+def excluir_cliente(lista_clientes):
+    if lista_vazia(lista_clientes):
+        return
 
-print("\nNome da Pessoa 1:")
-pessoa1.mostrar_somente_nome()
+    mostrar_todos_clientes(lista_clientes)
+    nome_buscar = input("\nDigite o nome do cliente a ser excluído: ")
 
-print("\nNome da Pessoa 2:")
-pessoa2.mostrar_somente_nome()
+    cliente = encontrar_cliente_por_nome(lista_clientes, nome_buscar)
+
+    if cliente:
+        lista_clientes.remove(cliente)
+        print(f"\nCliente '{cliente.nome}' removido com sucesso!")
+    else:
+        print("\nCliente não encontrado.")
+
+
+# Menu principal
+while True:
+    print("""
+--- Gerenciador de Clientes ---
+1 - Adicionar 
+2 - Mostrar todos
+3 - Atualizar 
+4 - Excluir 
+0 - Sair
+""")
+
+    try:
+        opcao = int(input("Digite uma das opções acima: "))
+    except:
+        print("Entrada inválida! Digite um número.")
+        time.sleep(2)
+        continue
+
+    match opcao:
+        case 1:
+            adicionar_cliente(lista_clientes)
+        case 2:
+            mostrar_todos_clientes(lista_clientes)
+        case 3:
+            atualizar_clientes(lista_clientes)
+        case 4:
+            excluir_cliente(lista_clientes)
+        case 0:
+            print("\nSaindo do programa...")
+            break
+        case _:
+            print("\nOpção inválida. Tente novamente.")
+
+    # Tempo antes de limpar
+    if opcao == 1:
+        time.sleep(1)
+    elif opcao != 0:
+        time.sleep(4)
+
+    if opcao != 0:
+        os.system("cls || clear")

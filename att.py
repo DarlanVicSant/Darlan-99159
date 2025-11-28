@@ -1,44 +1,52 @@
 import os
+import time 
 from dataclasses import dataclass
-os.system("cls")
-@dataclass
-class Endereco:
-    logradouro: str
-    numero: str
-    cidade: str
-
-    def mostrar_endereco(self):
-        return f"{self.logradouro}, {self.numero} - {self.cidade}"
-
+os.system("cls || clear") # limpa o terminal em Windows e Linux
 
 @dataclass
-class Pessoa:
+class Cliente:
+    #Atributos da classe
+    #Atributos são variaveis que pertecem a classe
     nome: str
     email: str
-    endereco: Endereco
-
+    telefone:str
+    
+    #Metodo é o nome dado a uma função que pertence a clase
+    #Metodo para mostrar as informarções dos clientes.
     def mostrar_dados(self):
-        print("\n--- DADOS DA PESSOA ---")
-        print(f"Nome: {self.nome}")
-        print(f"Email: {self.email}")
-        print(f"Endereço: {self.endereco.mostrar_endereco()}")
+        print(f"Nome: {self.nome} - \nE-mail {self.email} - \nTelefone {self.telefone}")
 
 
-def main():
-    print("=== Cadastro de Pessoa ===")
-    nome = input("Digite o nome: ")
-    email = input("Digite o email: ")
+#funçao para verificar se a lista esta vazia
+def verificar_lista_vazia(lista_clientes):
+    if not lista_clientes:
+        print("\nNão há clientes cadastrados.")
+        return True
+    return False
 
-    print("\n--- Endereço ---")
-    logradouro = input("Logradouro: ")
-    numero = input("Número: ")
-    cidade = input("Cidade: ")
+def adicionar_cliente(lista_cliente):
+    print("\n---Adicionar novo clinte --- ")
+    nome = input("Digite seu nome: ")
+    email = input("Digite seu E-mail: ")
+    Telefone = input("Digite seu Telefone: ")
 
-    endereco = Endereco(logradouro, numero, cidade)
-    pessoa = Pessoa(nome, email, endereco)
+    novo_cliente = Cliente(nome=nome, email=email, telefone=Telefone)
+    lista_cliente.append(novo_cliente)
+    print(f"\nCliente {nome} adicionado com sucesso!")
 
-    pessoa.mostrar_dados()
-
-
-if __name__ == "__main__":
-    main()
+#Função para encontrar um cliente na lista.
+def encontrar_cliente_por_nome(lista_clientes, nome_buscar):
+    nome_buscar_lower = nome_buscar.lower()
+    for cliente in lista_clientes:
+        if cliente.nome.lower() == nome_buscar_lower:
+            return Cliente
+        return None # None significa retornar vazio, sem conteudo
+    
+# Função para mostrar todos os clientes.
+def mostrar_todos_clientes(lista_clientes):
+    if verificar_lista_vazia(lista_clientes):
+        return
+    
+    print("\n--- Lista de clientes ---")
+    for cliente in lista_clientes:
+        print(f"{cliente.mostrar_dados()}")
