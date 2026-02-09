@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox News | O Movimento</title>
+    <style>
+        /* CONFIGURAÇÕES GERAIS */
+        :root {
+            --primary: #ff4757;
+            --secondary: #2f3542;
+            --accent: #1e90ff;
+            --text: #f1f2f6;
+            --bg: #000000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* NAVEGAÇÃO */
+        nav {
+            background: var(--secondary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        /* HERO SECTION */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvlTm3trTr-QfLjAFTBxcwIOYSCU6phGtBjg&s');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin: 0; color: var(--primary); text-transform: uppercase; }
+        .hero p { font-size: 1.2rem; max-width: 600px; }
+
+        /* CONTEÚDO PRINCIPAL */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--secondary);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .card h3 { color: var(--accent); margin-top: 0; }
+
+        /* SEÇÃO SOBRE O FELCA */
+        .felca-section {
+            background: #1e1e1e;
+            padding: 50px 20px;
+            margin-top: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .badge {
+            background: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: var(--secondary);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        /* BOTÃO INTERATIVO */
+        .btn-protesto {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .btn-protesto:active { transform: scale(0.95); }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ROBLOX BY DARLAN 2026</div>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#motivos">Motivos</a></li>
+            <li><a href="#felca">O Caso Felca</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="inicio">
+        <h1>A Revolta das Crianças do roblox</h1>
+        <p>Entenda por que milhares de jogadores estão ocupando as praças virtuais e protestando contra as novas diretrizes de 2026.</p>
+        <button class="btn-protesto" onclick="alert('Você se juntou ao protesto virtual!')">Deseja se juntar a revolta dos injustiçados? Clique Aqui</button>
+    </header>
+
+    <div class="container">
+        
+        <h2 id="motivos">Principais Reivindicações</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="badge">SEGURANÇA</span>
+                <h3>Fim do Chat Livre</h3>
+                <p>A nova restrição impede que jogadores de idades diferentes conversem, dificultando a interação em clãs e grupos de amigos antigos.</p>
+            </div>
+            <div class="card">
+                <span class="badge">PRIVACIDADE</span>
+                <h3>Biometria Obrigatória</h3>
+                <p>Muitos usuários reclamam da necessidade de mostrar o rosto para a câmera para liberar funções básicas do jogo.</p>
+            </div>
+            <div class="card">
+                <span class="badge">ECONOMIA</span>
+                <h3>Taxas de Criação</h3>
+                <p>Pequenos desenvolvedores alegam que as novas taxas de publicação de itens (UGC) estão sufocando os criadores iniciantes.</p>
+            </div>
+        </div>
+
+        <section class="felca-section" id="felca">
+            <h2>O "Vilão" da Comunidade?</h2>
+            <p>O influenciador <strong>Felca</strong> tornou-se o alvo principal dos protestos no Brasil. Após seus vídeos expondo problemas na plataforma, a Roblox Corporation acelerou as mudanças de segurança.</p>
+            <p><i>"Felca pior que hitler, Afasta de nois esse cale se pai, quero injustiça"</i> – Diz uma das placas mais comuns nos servidores de protesto.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Portal de Notícias Roblox Independente.</p>
+        <p><small>Este site é um exemplo informativo sobre movimentos culturais dentro de jogos.</small></p>
+    </footer>
+
+</body>
+</html>
